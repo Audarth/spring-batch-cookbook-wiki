@@ -37,15 +37,35 @@ The property _marklogic.name_ corresponds to the name of your MarkLogic database
 
 # Examples
 
-The following examples use the Most Popular Baby Names from NYC CSV file contained under the test resources directory.  You can substitute this file and the parameters for the CSV file of your choosing.  
+The following examples use the Most Popular Baby Names from NYC CSV file contained under the test resources directory.  You can substitute this file and the parameters for the CSV file of your choosing.  Make sure that for each of your examples, you have a job.properties in your classpath or in your execution directory.    
 
 ## Example 1 - Import CSV File
 
-    hector.bat input_file_path=./src/test/resources/Most_Popular_Baby_Names_NYC.csv delimited_root_name=baby document_type=xml output_collections=baby
+    hector.bat input_file_path=./src/test/resources/Most_Popular_Baby_Names_NYC.csv delimited_root_name=baby  output_collections=baby
    
-## Example 2 - Import CSV with Content Transform
+## Example 2 - Import CSV File as JSON
+
+    hector.bat input_file_path=./src/test/resources/Most_Popular_Baby_Names_NYC.csv output_collections=baby document_type=json
+
+## Example 3 - Import CSV with Content Transform
+
+To apply a Java based transform to delimited files you must first be able to compile and build Hector.  Please refer to the [README](https://github.com/sastafford/hector/blob/master/README.md) for guidance. 
+
+For XML documents, the first step is to add a Java class in the src/main folder under a package of your choosing.  The class will extend the [XmlStringColumnMapSerializer](https://github.com/sastafford/hector/blob/master/src/main/java/com/marklogic/hector/XmlStringColumnMapSerializer.java).  and the class you will override will be the following method. 
+
+     protected Map<String, Object> transformColumnMap(Map<String, Object> columnMap)
+
+The columnMap map variable contains the header labels in the key value and the corresponding value for that particular row in the map value.  The [BabyNameColumnMapSerializer](https://github.com/sastafford/hector/blob/master/src/test/java/com/marklogic/hector/BabyNameColumnMapSerializer.java) is an example of a Java delimited row transform.  
+
+Once you have added the transform, then rebuild the package using the following gradle command.  
+
+    gradle distZip
+
+Your new distribution will be found under the build/distributions directory.  You can then reference your transform via the _output_transform_ parameter.  
 
     hector.bat input_file_path=./src/test/resources/Most_Popular_Baby_Names_NYC.csv delimited_root_name=baby document_type=xml output_collections=baby output_transform=com.marklogic.hector.examples.babies.BabyNameColumnMapSerializer
+
+## Example 4 - Import CSV with Content Transform and URI Generation
 
 A transform can be defined by subclassing the XmlStringColumnMapSerializer.  See the BabyNameColumnMapSerializer for an example.  
 
