@@ -23,18 +23,33 @@ output_transform | Yes | Full package name for Java class that implements Column
 thread_size | Yes | Default value is 4
 chunk_size | Yes | Default value is 5
 
-## Example
+# Hector Configuration
 
-    hector.bat com.marklogic.hector.JobConfig job input_file_path=./src/test/resources/Most_Popular_Baby_Names_NYC.csv delimited_root_name=baby document_type=xml output_collections=baby
-    
+Hector requires a [job.properties](https://github.com/sastafford/hector/blob/master/job.properties) file to be defined and accessible in your classpath.
 
-## Example with Transform
+    marklogic.host=localhost
+    marklogic.port=8200
+    marklogic.username=admin
+    marklogic.password=admin
+    marklogic.name=hector-content
+
+The property _marklogic.name_ corresponds to the name of your MarkLogic database.  
+
+# Examples
+
+The following examples use the Most Popular Baby Names from NYC CSV file contained under the test resources directory.  You can substitute this file and the parameters for the CSV file of your choosing.  
+
+## Example 1 - Import CSV File
+
+    hector.bat input_file_path=./src/test/resources/Most_Popular_Baby_Names_NYC.csv delimited_root_name=baby document_type=xml output_collections=baby
+   
+## Example 2 - Import CSV with Content Transform
+
+    hector.bat input_file_path=./src/test/resources/Most_Popular_Baby_Names_NYC.csv delimited_root_name=baby document_type=xml output_collections=baby output_transform=com.marklogic.hector.examples.babies.BabyNameColumnMapSerializer
 
 A transform can be defined by subclassing the XmlStringColumnMapSerializer.  See the BabyNameColumnMapSerializer for an example.  
 
-    hector.bat com.marklogic.hector.JobConfig job input_file_path=./src/test/resources/Most_Popular_Baby_Names_NYC.csv delimited_root_name=baby document_type=xml output_collections=baby output_transform=com.marklogic.hector.examples.babies.BabyNameColumnMapSerializer
-
-## Troubleshooting
+# Troubleshooting
 
  * Server Message: XDMP-DOCSTARTTAGCHAR: xdmp:get-request-part-body("xml") 
    * Make sure that your delimited text file is saved with UTF-8 encoding.  
