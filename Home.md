@@ -65,9 +65,15 @@ Your new distribution will be found under the build/distributions directory.  Yo
 
     hector.bat input_file_path=./src/test/resources/Most_Popular_Baby_Names_NYC.csv delimited_root_name=baby document_type=xml output_collections=baby output_transform=com.marklogic.hector.examples.babies.BabyNameColumnMapSerializer
 
-## Example 4 - Import CSV with Content Transform and URI Generation
+## Example 4 - Import CSV with URI Generation
 
-A transform can be defined by subclassing the XmlStringColumnMapSerializer.  See the BabyNameColumnMapSerializer for an example.  
+Using the _uri_id_ parameter you can specify a column as the unique URI for the document.  For our baby names file we will use the NM (represents the NAME) as the uri.  
+
+    hector.bat input_file_path=./src/test/resources/Most_Popular_Baby_Names_NYC.csv delimited_root_name=baby document_type=xml output_collections=baby output_transform=com.marklogic.hector.examples.babies.BabyNameColumnMapSerializer uri_id=NM
+
+In this case, the baby name is not unique, therefore, documents are overwritten.  Suppose you have the requirement to concatenate multiple column names as the URI.  Similar to the transform, Hector has the capability of implementing an Interface to facilitate uri generation.  The [BabyNameUriGenerator](https://github.com/sastafford/hector/blob/master/src/test/java/com/marklogic/hector/BabyNameUriGenerator.java) class implements the [URIGenerator](https://github.com/sastafford/marklogic-spring-batch/blob/master/infrastructure/src/main/java/com/marklogic/spring/batch/item/processor/support/UriGenerator.java) interface.  Include this with your modified Hector distribution and rebuild your distribution.  It can then be referenced via the command line. 
+
+    hector.bat input_file_path=./src/test/resources/Most_Popular_Baby_Names_NYC.csv delimited_root_name=baby document_type=xml output_collections=baby uri_transform=com.marklogic.hector.examples.babies.BabyNameUriGenerator
 
 # Troubleshooting
 
