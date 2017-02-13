@@ -77,6 +77,10 @@ In this case, the baby name is not unique, therefore, documents are overwritten.
 
 In this example, the BabyNameUriGenerator is only concatenating two columns.  This is still not unique for this particular dataset, but is used to provide an example.  
 
+# Other Build Process
+
+You can also download the [hector jar from bintray](https://bintray.com/sastafford/maven/hector) and start a brand new Java project or modify an existing one.  
+
 # Troubleshooting
 
  * Server Message: XDMP-DOCSTARTTAGCHAR: xdmp:get-request-part-body("xml") 
