@@ -75,6 +75,8 @@ In this case, the baby name is not unique, therefore, documents are overwritten.
 
     hector.bat input_file_path=./src/test/resources/Most_Popular_Baby_Names_NYC.csv delimited_root_name=baby document_type=xml output_collections=baby uri_transform=com.marklogic.hector.examples.babies.BabyNameUriGenerator
 
+In this example, the BabyNameUriGenerator is only concatenating two columns.  This is still not unique for this particular dataset, but is used to provide an example.  
+
 # Troubleshooting
 
  * Server Message: XDMP-DOCSTARTTAGCHAR: xdmp:get-request-part-body("xml") 
