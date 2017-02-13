@@ -1,4 +1,4 @@
-[Download Hector]
+[Download Latest Version of Hector](https://github.com/sastafford/hector/releases/latest)
 
 # Introduction
 
