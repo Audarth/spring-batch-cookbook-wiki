@@ -53,4 +53,5 @@ A transform can be defined by subclassing the XmlStringColumnMapSerializer.  See
 
  * Server Message: XDMP-DOCSTARTTAGCHAR: xdmp:get-request-part-body("xml") 
    * Make sure that your delimited text file is saved with UTF-8 encoding.  
-
+ * Exception in thread "ThreadPoolTaskExecutor-x" com.sun.jersey.api.client.ClientHandlerException: org.apache.http.NoHttpResponseException: _host:port_ failed to respond
+   * Decrease your thread count or chunk size.  The server resources are getting overwhelmed.
