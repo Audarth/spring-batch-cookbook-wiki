@@ -30,9 +30,7 @@ Tika requires a job.properties file to be defined and accessible in your classpa
     marklogic.username=admin
     marklogic.password=admin
 
-# Examples
-
-The following examples use the Most Popular Baby Names from NYC CSV file contained under the test resources directory.  You can substitute this file and the parameters for the CSV file of your choosing.  Make sure that for each of your examples, you have a job.properties in your classpath or in your execution directory.    
+# Examples  
 
 ## Example 1 - Lorem Ipsum
 
