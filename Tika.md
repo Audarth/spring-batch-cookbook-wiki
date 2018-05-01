@@ -45,7 +45,7 @@ After job executes, there will be 1 document that exists in the target database 
    
 ## Example 2 - Creating a new Task
 
-To create a task you simply need to reference the same job_path and job_id to use the defined java configuration then put in the relevant arguments as defined in  [Configuration](#Configuration)
+To create a task you simply need to reference the same job_path and job_id to use the defined java configuration then put in the relevant arguments as defined in  [Configuration](#configuration)
 
 For example, to process all pdf files located in `/tmp/` and put them in collections `tikaPDF` and `pdf` you could add the following task to your `build.gradle` file.
 ```
